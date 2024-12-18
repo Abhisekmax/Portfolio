@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+
+        header {
+            background-color: #4a90e2;
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #4a90e2;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 10px rgba(74, 144, 226, 0.7);
+        }
+
+        .gallery-item img, .gallery-item video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .gallery-item .description {
+            padding: 10px;
+            text-align: center;
+            background-color: #f9f9f9;
+            color: #4a90e2;
+            font-weight: bold;
+        }
+
+        /* Popup Modal */
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .popup img, .popup video {
+            max-width: 90%;
+            max-height: 90%;
+            cursor: zoom-in;
+            transition: transform 0.3s;
+        }
+
+        .popup img:hover, .popup video:hover {
+            transform: scale(1.1);
+        }
+
+        .popup.active {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>My Portfolio Gallery</h1>
+    <p>Explore my work in 3D modeling, lighting, rigging, and animation</p>
+</header>
+
+<h2>Images</h2>
+<section class="gallery">
+    <div class="gallery-item" onclick="openPopup('ao_lighting.jpg', 'image')">
+        <img src="ao_lighting.jpg" alt="Ambient Occlusion Lighting">
+        <div class="description">Ambient Occlusion Lighting</div>
+    </div>
+    <div class="gallery-item" onclick="openPopup('character_pose.jpg', 'image')">
+        <img src="character_pose.jpg" alt="Character Posing">
+        <div class="description">Character Posing</div>
+    </div>
+    <div class="gallery-item" onclick="openPopup('film_noir_lighting.jpg', 'image')">
+        <img src="film_noir_lighting.jpg" alt="Film Noir Lighting">
+        <div class="description">Film Noir Lighting</div>
+    </div>
+    <div class="gallery-item" onclick="openPopup('game_environment.jpg', 'image')">
+        <img src="game_environment.jpg" alt="Game Environment Design">
+        <div class="description">Game Environment Design</div>
+    </div>
+</section>
+
+<h2>Videos</h2>
+<section class="gallery">
+    <div class="gallery-item" onclick="openPopup('lighting_breakdown.mp4', 'video')">
+        <video>
+            <source src="lighting_breakdown.mp4" type="video/mp4">
+        </video>
+        <div class="description">Lighting Breakdown</div>
+    </div>
+    <div class="gallery-item" onclick="openPopup('pendulum_animation.mp4', 'video')">
+        <video>
+            <source src="pendulum_animation.mp4" type="video/mp4">
+        </video>
+        <div class="description">Pendulum Animation</div>
+    </div>
+    <div class="gallery-item" onclick="openPopup('rubber_metal_prop.mp4', 'video')">
+        <video>
+            <source src="rubber_metal_prop.mp4" type="video/mp4">
+        </video>
+        <div class="description">Rubber Metal Prop Animation</div>
+    </div>
+</section>
+
+<!-- Popup Modal -->
+<div class="popup" id="popup" onclick="closePopup()">
+    <img id="popupImage" src="" alt="Popup Image" style="display: none;">
+    <video id="popupVideo" controls style="display: none;">
+        <source id="popupVideoSource" src="" type="video/mp4">
+    </video>
+</div>
+
+<script>
+    function openPopup(src, type) {
+        const popup = document.getElementById('popup');
+        const popupImage = document.getElementById('popupImage');
+        const popupVideo = document.getElementById('popupVideo');
+        const popupVideoSource = document.getElementById('popupVideoSource');
+        
+        popup.classList.add('active');
+
+        if (type === 'image') {
+            popupImage.src = src;
+            popupImage.style.display = 'block';
+            popupVideo.style.display = 'none';
+        } else if (type === 'video') {
+            popupVideoSource.src = src;
+            popupVideo.load();
+            popupVideo.style.display = 'block';
+            popupImage.style.display = 'none';
+        }
+    }
+
+    function closePopup() {
+        const popup = document.getElementById('popup');
+        const popupImage = document.getElementById('popupImage');
+        const popupVideo = document.getElementById('popupVideo');
+        
+        popup.classList.remove('active');
+        popupImage.src = '';
+        popupVideo.pause();
+        popupVideo.currentTime = 0;
+    }
+</script>
+
+</body>
+</html>
