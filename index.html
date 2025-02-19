@@ -3,71 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Gallery</title>
+    <title>Portfolio</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f4f8;
-            color: #333;
-        }
-
-        header {
-            background-color: #4a90e2;
-            color: #fff;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
             text-align: center;
-            padding: 1.5rem 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            padding: 20px;
         }
-
-        h2 {
-            text-align: center;
-            margin-top: 1.5rem;
-            color: #4a90e2;
-        }
-
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 15px;
-            padding: 20px;
-            margin: 0 auto;
-            max-width: 1200px;
+            max-width: 1000px;
+            margin: auto;
         }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .gallery img {
+            width: 100%;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
             cursor: pointer;
         }
-
-        .gallery-item:hover {
+        .gallery img:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 10px rgba(74, 144, 226, 0.7);
         }
-
-        .gallery-item img, .gallery-item video {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .gallery-item .description {
-            padding: 10px;
-            text-align: center;
-            background-color: #f9f9f9;
-            color: #4a90e2;
+        .description {
+            font-size: 18px;
             font-weight: bold;
+            margin-top: 5px;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
-
-        /* Popup Modal */
-        .popup {
+        .lightbox {
             position: fixed;
             top: 0;
             left: 0;
@@ -75,138 +42,91 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.8);
             display: none;
-            align-items: center;
             justify-content: center;
-            z-index: 1000;
+            align-items: center;
+            animation: fadeIn 0.3s ease-in-out;
         }
-
-        .popup img, .popup video {
+        .lightbox img {
             max-width: 90%;
-            max-height: 90%;
-            cursor: zoom-in;
-            transition: transform 0.3s;
+            max-height: 80%;
+            border-radius: 10px;
         }
-
-        .popup img:hover, .popup video:hover {
-            transform: scale(1.1);
+        .lightbox .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
         }
-
-        .popup.active {
-            display: flex;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .headline {
+            font-size: 48px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
         }
     </style>
 </head>
 <body>
-
-<header>
-    <h1>My Portfolio Gallery</h1>
-    <p>Explore my work in 3D modeling, lighting, rigging, and animation</p>
-</header>
-
-<h2>Images</h2>
-<section class="gallery">
-    <div class="gallery-item" onclick="openPopup('ao_lighting.jpg', 'image')">
-        <img src="ao_lighting.jpg" alt="Ambient Occlusion Lighting">
-        <div class="description">Ambient Occlusion Lighting</div>
+    <h1 class="headline">✨ My Portfolio ✨</h1>
+    <div class="gallery">
+        <div>
+            <img src="image1.jpg" alt="Project 1" onclick="openLightbox(this)">
+            <div class="description"> Study Table Model </div>
+        </div>
+        <div>
+            <img src="image2.jpg" alt="Project 2" onclick="openLightbox(this)">
+            <div class="description"> Model </div>
+        </div>
+        <div>
+            <img src="image3.jpg" alt="Project 3" onclick="openLightbox(this)">
+            <div class="description"> AO pass Lighting </div>
+        </div>
+        <div>
+            <img src="image4.jpg" alt="Project 4" onclick="openLightbox(this)">
+            <div class="description"> Game Environment </div>
+        </div>
+        <div>
+            <img src="image5.jpg" alt="Project 5" onclick="openLightbox(this)">
+            <div class="description"> Film Noir Lighting </div>
+        </div>
+        <div>
+            <img src="image6.jpg" alt="Project 6" onclick="openLightbox(this)">
+            <div class="description"> Haunted Hallway Lighting </div>
+        </div>
+        <div>
+            <img src="image7.jpg" alt="Project 7" onclick="openLightbox(this)">
+            <div class="description"> Museam Lighting </div>
+        </div>
+        <div>
+            <img src="image8.jpg" alt="Project 8" onclick="openLightbox(this)">
+            <div class="description"> Ship Deck Lighting </div>
+        </div>
+        <div>
+            <img src="image9.jpg" alt="Project 9" onclick="openLightbox(this)">
+            <div class="description"> Character Pose Exhausted </div>
+        </div>
+        <div>
+            <img src="image10.jpg" alt="Project 10" onclick="openLightbox(this)">
+            <div class="description"> Character Pose Happiness </div>
+        </div>
     </div>
-    <div class="gallery-item" onclick="openPopup('character_pose.jpg', 'image')">
-        <img src="character_pose.jpg" alt="Character Posing">
-        <div class="description">Exhausted</div>
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img">
     </div>
-    <div class="gallery-item" onclick="openPopup('https://github.com/Abhisekmax/Portfolio/blob/main/Film_noir_lighting.jpg?raw=true', 'image')">
-        <img src="https://github.com/Abhisekmax/Portfolio/blob/main/Film_noir_lighting.jpg?raw=true" alt="Film Noir Lighting">
-        <div class="description">Film Noir Lighting</div>
-    </div>
-    <div class="gallery-item" onclick="openPopup('https://github.com/Abhisekmax/Portfolio/blob/main/Game_environment.jpg?raw=true', 'image')">
-        <img src=https://github.com/Abhisekmax/Portfolio/blob/main/Game_environment.jpg?raw=true" alt="Game Environment Design">
-        <div class="description">Game Environment Design</div>
-    </div>
-    <div class="gallery-item" onclick="openPopup('happiness_pose.jpg', 'image')">
-        <img src="happiness_pose.jpg" alt="Happiness">
-        <div class="description">Happiness</div>
-    </div>
-    <div class="gallery-item" onclick="openPopup('https://github.com/Abhisekmax/Portfolio/blob/main/Haunted_Hallway.jpg?raw=true', 'image')">
-        <img src="https://github.com/Abhisekmax/Portfolio/blob/main/Haunted_Hallway.jpg?raw=true" alt="Haunted Hallway">
-        <div class="description">Haunted Hallway</div>
-    </div>
-    <div class="gallery-item" onclick="openPopup('museum_lighting.jpg', 'image')">
-        <img src="museum_lighting.jpg" alt="Museum Lighting">
-        <div class="description">Museum Lighting</div>
-    </div>
-    <div class="gallery-item" onclick="openPopup('https://github.com/Abhisekmax/Portfolio/blob/main/Ship_deck_lighting.jpg?raw=true', 'image')">
-        <img src="https://github.com/Abhisekmax/Portfolio/blob/main/Ship_deck_lighting.jpg?raw=true" alt="Ship Deck Lighting">
-        <div class="description">Ship Deck Lighting</div>
-    </div>
-</section>
-
-<h2>Videos</h2>
-<section class="gallery">
-    <div class="gallery-item" onclick="openPopup('lighting_breakdown.mp4', 'video')">
-        <video>
-            <source src="lighting_breakdown.mp4" type="video/mp4">
-        </video>
-        <div class="description">Lighting Breakdown</div>
-    </div>
-    <div class="gallery-item" onclick="openPopup('https://youtu.be/8jzWII18ISY', 'video')">
-        <video>
-            <source src="https://youtu.be/8jzWII18ISY" type="video/mp4">
-        </video>
-        <div class="description">Pendulum Animation</div>
-    </div>
-    <div class="gallery-item" onclick="openPopup('https://youtu.be/8jzWII18ISY', 'video')">
-        <video>
-            <source src="https://youtu.be/8jzWII18ISY" type="video/mp4">
-        </video>
-        <div class="description">Rubber Metal Prop Animation</div>
-    </div>
-    <div class="gallery-item" onclick="openPopup('tailed_ball_animation.mp4', 'video')">
-        <video>
-            <source src="tailed_ball_animation.mp4" type="video/mp4">
-        </video>
-        <div class="description">Tailed Ball Animation</div>
-    </div>
-</section>
-
-<!-- Popup Modal -->
-<div class="popup" id="popup" onclick="closePopup()">
-    <img id="popupImage" src="" alt="Popup Image" style="display: none;">
-    <video id="popupVideo" controls style="display: none;">
-        <source id="popupVideoSource" src="" type="video/mp4">
-    </video>
-</div>
-
-<script>
-    function openPopup(src, type) {
-        const popup = document.getElementById('popup');
-        const popupImage = document.getElementById('popupImage');
-        const popupVideo = document.getElementById('popupVideo');
-        const popupVideoSource = document.getElementById('popupVideoSource');
-        
-        popup.classList.add('active');
-
-        if (type === 'image') {
-            popupImage.src = src;
-            popupImage.style.display = 'block';
-            popupVideo.style.display = 'none';
-        } else if (type === 'video') {
-            popupVideoSource.src = src;
-            popupVideo.load();
-            popupVideo.style.display = 'block';
-            popupImage.style.display = 'none';
+    <script>
+        function openLightbox(img) {
+            document.getElementById("lightbox-img").src = img.src;
+            document.getElementById("lightbox").style.display = "flex";
         }
-    }
-
-    function closePopup() {
-        const popup = document.getElementById('popup');
-        const popupImage = document.getElementById('popupImage');
-        const popupVideo = document.getElementById('popupVideo');
-        
-        popup.classList.remove('active');
-        popupImage.src = '';
-        popupVideo.pause();
-        popupVideo.currentTime = 0;
-    }
-</script>
-
+        function closeLightbox() {
+            document.getElementById("lightbox").style.display = "none";
+        }
+    </script>
 </body>
 </html>
