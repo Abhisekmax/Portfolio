@@ -81,11 +81,13 @@
         justify-content:center;
         flex-wrap:wrap;
         gap:20px;
+        padding: 0 10px; /* prevent edges overflow */
     }
 
     .item{
-        width:300px;
-        height:240px;
+        width:100%;
+        max-width:300px; /* desktop max */
+        height:auto;
         background:var(--card);
         border-radius:10px;
         overflow:hidden;
@@ -104,7 +106,7 @@
 
     .item img, .item video{
         width:100%;
-        height:200px;
+        height:auto;
         object-fit:cover;
     }
 
@@ -138,6 +140,19 @@
         max-height:90vh;
         border-radius:10px;
         box-shadow:0 0 20px var(--accent);
+    }
+
+    /* MOBILE RESPONSIVE */
+    @media (max-width:600px){
+        .item{
+            max-width:100%;
+        }
+        h2{
+            font-size:22px;
+        }
+        p{
+            font-size:14px;
+        }
     }
 </style>
 </head>
@@ -178,8 +193,6 @@ const items = [
     { type: "image", src: "https://github.com/Abhisekmax/Portfolio/blob/main/image1.jpg?raw=true", title: "Study Table Model" },
     { type: "image", src: "https://github.com/Abhisekmax/Portfolio/blob/main/image2.jpg?raw=true", title: "House Model" },
     { type: "image", src: "https://github.com/Abhisekmax/Portfolio/blob/main/image3.jpg?raw=true", title: "Still Life Model" },
-
-    // Add remaining image slots (edit titles later)
     { type: "image", src: "https://github.com/Abhisekmax/Portfolio/blob/main/image4.jpg?raw=true", title: "Night Environment" },
     { type: "image", src: "https://github.com/Abhisekmax/Portfolio/blob/main/image5.jpg?raw=true", title: "Film Noir Lighting" },
     { type: "image", src: "https://github.com/Abhisekmax/Portfolio/blob/main/image6.jpg?raw=true", title: "Indoor Night Environment" },
@@ -190,8 +203,6 @@ const items = [
     { type: "image", src: "https://github.com/Abhisekmax/Portfolio/blob/main/image11.jpg?raw=true", title: "Ship Deck Lighting" },
     { type: "image", src: "https://github.com/Abhisekmax/Portfolio/blob/main/image12.jpg?raw=true", title: "Character Pose Exhausted" },
     { type: "image", src: "https://github.com/Abhisekmax/Portfolio/blob/main/image13.jpg?raw=true", title: "Museum Lighting" },
-
-    /* --------- VIDEOS --------- */
     { type: "video", src: "https://res.cloudinary.com/dgjmgyn8c/video/upload/v1764680835/Lighting_breakdown_du3dg8.mp4", title: "Lighning Breakdown Anim" },
     { type: "video", src: "https://res.cloudinary.com/dgjmgyn8c/video/upload/v1764681546/Rubber_metal_prop_zy7nrm.mp4", title: "Rubber & Metal Anim" },
     { type: "video", src: "https://res.cloudinary.com/dgjmgyn8c/video/upload/v1764681545/tailed_ball_animation_kdqf8x.mp4", title: "Tail ball Anim" },
